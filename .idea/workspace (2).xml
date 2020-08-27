@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2e8c1767-934b-4664-be63-c049fc7a398f" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaFXApplication" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1gehzv537SMc5184Boj2OVG7JlV" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/openjfx-14.0.2.1_windows-x86_bin-sdk/javafx-sdk-14.0.2.1/lib/javafx.fxml.jar" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="HelloWorldGradle.main" />
+      <option name="VM_PARAMETERS" value="--module-path=&quot;C:\Users\Kris\Downloads\JavaFX\lib&quot; --add-modules=javafx.controls,javafx.fxml,javafx.base,javafx.media,javafx.graphics,javafx.swing,javafx.web" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HelloWorldGradle [dependencies]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="dependencies" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.HelloWorldGradle [dependencies]" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.HelloWorldGradle [dependencies]" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2e8c1767-934b-4664-be63-c049fc7a398f" name="Default Changelist" comment="" />
+      <created>1598481232348</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598481232348</updated>
+      <workItem from="1598481233393" duration="3088000" />
+      <workItem from="1598542150865" duration="2511000" />
+      <workItem from="1598545696768" duration="2291000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="547" y="368" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598546288300">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="-1960" y="-540" key="#com.intellij.execution.impl.EditConfigurationsDialog/-2160.-1712.1440.2520/0.0.2560.1400@-2160.-1712.1440.2520" timestamp="1598545634998" />
+    <state x="547" y="368" key="#com.intellij.execution.impl.EditConfigurationsDialog/-2160.-1712.1440.2520/0.0.2560.1400@0.0.2560.1400" timestamp="1598546288300" />
+    <state x="-1629" y="-325" key="FileChooserDialogImpl" timestamp="1598482386941">
+      <screen x="-2160" y="-1712" width="1440" height="2520" />
+    </state>
+    <state x="-1629" y="-325" key="FileChooserDialogImpl/-2160.-1712.1440.2520/0.0.2560.1400@-2160.-1712.1440.2520" timestamp="1598482386941" />
+    <state width="2517" height="398" key="GridCell.Tab.0.bottom" timestamp="1598546628603">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1379" height="398" key="GridCell.Tab.0.bottom/-2160.-1712.1440.2520/0.0.2560.1400@-2160.-1712.1440.2520" timestamp="1598545661355" />
+    <state width="2517" height="398" key="GridCell.Tab.0.bottom/-2160.-1712.1440.2520/0.0.2560.1400@0.0.2560.1400" timestamp="1598546628603" />
+    <state width="2517" height="398" key="GridCell.Tab.0.center" timestamp="1598546628603">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1379" height="398" key="GridCell.Tab.0.center/-2160.-1712.1440.2520/0.0.2560.1400@-2160.-1712.1440.2520" timestamp="1598545661355" />
+    <state width="2517" height="398" key="GridCell.Tab.0.center/-2160.-1712.1440.2520/0.0.2560.1400@0.0.2560.1400" timestamp="1598546628603" />
+    <state width="2517" height="398" key="GridCell.Tab.0.left" timestamp="1598546628603">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1379" height="398" key="GridCell.Tab.0.left/-2160.-1712.1440.2520/0.0.2560.1400@-2160.-1712.1440.2520" timestamp="1598545661355" />
+    <state width="2517" height="398" key="GridCell.Tab.0.left/-2160.-1712.1440.2520/0.0.2560.1400@0.0.2560.1400" timestamp="1598546628603" />
+    <state width="2517" height="398" key="GridCell.Tab.0.right" timestamp="1598546628603">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1379" height="398" key="GridCell.Tab.0.right/-2160.-1712.1440.2520/0.0.2560.1400@-2160.-1712.1440.2520" timestamp="1598545661355" />
+    <state width="2517" height="398" key="GridCell.Tab.0.right/-2160.-1712.1440.2520/0.0.2560.1400@0.0.2560.1400" timestamp="1598546628603" />
+    <state x="223" y="277" width="1851" height="707" key="SettingsEditor" timestamp="1598546553264">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="-1916" y="-590" width="1041" height="849" key="SettingsEditor/-2160.-1712.1440.2520/0.0.2560.1400@-2160.-1712.1440.2520" timestamp="1598545197750" />
+    <state x="223" y="277" width="1851" height="707" key="SettingsEditor/-2160.-1712.1440.2520/0.0.2560.1400@0.0.2560.1400" timestamp="1598546553264" />
+  </component>
+</project>
