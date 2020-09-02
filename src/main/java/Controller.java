@@ -1,12 +1,15 @@
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 
 public class Controller {
 
     @FXML
-    private Label lblOutput;
+    // Instantiations go here
 
-    public void sayHello() {
-        lblOutput.setText("Hello FXML!");
+    public void AddProduct() {
+        System.out.println("Product Added!");
+    }
+
+    public void RecordProduction(){
+        System.out.println("Production Recorded!");
     }
 }
