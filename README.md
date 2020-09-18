@@ -26,7 +26,10 @@ Semester Java FX Project
   Started main Controller methods that will fetch from the use input in the GUI and insert them into the database.
     The controller method has code currently in it that isn't being used to interact with data, but is being used to test different functions.
     
-  
+  Resources(sorted by greatness):
+   * https://sites.google.com/site/profvanselow/course/cop-3003/
+   * https://www.tutorialspoint.com/jdbc/jdbc-insert-records.htm
+   * https://docs.oracle.com/javase/8/javafx/api/javafx/fxml/doc-files/introduction_to_fxml.html#controllers
   
   
   
