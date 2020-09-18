@@ -23,7 +23,6 @@ public class Controller {
     @FXML
     private Button btnAddProduct;
 
-
     @FXML
     void AddProduct(ActionEvent event) {                        // Product Tab Button
         ProductionConnectDatabase();
@@ -40,6 +39,12 @@ public class Controller {
     @FXML
     private ComboBox<String> cmbobxChooseQuantity;
 
+    @FXML
+    void RecordProduction(ActionEvent event) {                  // Produce Tab Button
+
+    }
+    // ***** End Produce Tab  ******
+
     // Initialize drop-down boxes
     public void initialize(){
 
@@ -50,14 +55,8 @@ public class Controller {
         }
         cmbobxChooseQuantity.setEditable(true);
 
-
     }
 
-    @FXML
-    void RecordProduction(ActionEvent event) {                  // Produce Tab Button
-
-    }
-    // End Produce Tab
 
     public void ProductionConnectDatabase() {
 
@@ -72,6 +71,10 @@ public class Controller {
         Connection conn = null;
         Statement stmt = null;
 
+
+        // The following code is to connect and interact with database tables from the GUI
+        // It is almost all completely useless in its current form, but is being used as test models
+        // Exception handling used in current form for testing
         try {
 
             // Step 1: Register JDBC Driver
@@ -86,6 +89,8 @@ public class Controller {
             System.out.println("Inserting records into the table...");
             stmt = conn.createStatement();  // object for sending SQL statements to DB
 
+            // **** The following will most likely be in its own method ****
+
             // text box to String
             String product = txtProductName.getText();
             String manufacturer = txtManufacturer.getText();
@@ -94,6 +99,8 @@ public class Controller {
             //        "VALUES (" + product + "," + manufacturer + "," + "test" + ")";
             // stmt.executeUpdate(sql);        // executeUpdate() executes a string to be as SQL code
             System.out.println("Inserted records into the table...");
+
+            // **** method would end here ****
 
         }catch (SQLException se) {
             // Handle errors for JDBC

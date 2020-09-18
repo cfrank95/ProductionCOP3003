@@ -1,6 +1,6 @@
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.application.Application;  // Entry point for Java FX applications
+import javafx.fxml.FXMLLoader;          // Needed for Parent root to connect to fxml file
+import javafx.scene.Parent;             // Needed for Parent root to connect to fxml file
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -17,8 +17,8 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 300, 275);
 
-        primaryStage.setTitle("Production");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        primaryStage.setTitle("Production");        // Set title for primary scene
+        primaryStage.setScene(scene);               // Load primaryStage "startUp" Scene object
+        primaryStage.show();                        // Display primaryStage
     }
 }

@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="300.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
 
@@ -23,15 +37,15 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextField promptText="Enter Product Name" stylesheets="@Style.css" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtProductName" promptText="Enter Product Name" stylesheets="@Style.css" GridPane.columnIndex="1" />
                               <Label stylesheets="@Style.css" text="Product Name" />
                               <Label stylesheets="@Style.css" text="Manufacturer" GridPane.rowIndex="1" />
-                              <TextField promptText="Enter Manufacturer" stylesheets="@Style.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <TextField fx:id="txtManufacturer" promptText="Enter Manufacturer" stylesheets="@Style.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label stylesheets="@Style.css" text="Item Type" GridPane.rowIndex="2" />
-                              <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="98.0" stylesheets="@Style.css" text="Item Type" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ChoiceBox fx:id="choicebxItemType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
-                        <Button fx:id="AddProductButton" blendMode="HARD_LIGHT" layoutX="64.0" layoutY="99.0" mnemonicParsing="false" onAction="#AddProduct" stylesheets="@Style.css" text="Add Product" AnchorPane.bottomAnchor="128.33333333333331" AnchorPane.topAnchor="99.0" />
+                        <Button fx:id="btnAddProduct" blendMode="HARD_LIGHT" layoutX="64.0" layoutY="99.0" mnemonicParsing="false" onAction="#AddProduct" stylesheets="@Style.css" text="Add Product" AnchorPane.bottomAnchor="128.33333333333331" AnchorPane.topAnchor="99.0" />
                         <Label layoutX="105.0" layoutY="144.0" stylesheets="@Style.css" text="Existing Products" textAlignment="CENTER" />
                         <TableView layoutY="161.0" prefHeight="89.0" prefWidth="300.0" stylesheets="@Style.css">
                           <columns>
@@ -48,9 +62,9 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@Style.css">
                      <children>
                         <Label layoutX="27.0" layoutY="5.0" stylesheets="@Style.css" text="Choose Product" />
-                        <ListView layoutX="7.0" layoutY="26.0" prefHeight="212.0" prefWidth="129.0" stylesheets="@Style.css" />
+                        <ListView fx:id="lstvwChooseProduct" layoutX="7.0" layoutY="26.0" prefHeight="212.0" prefWidth="129.0" stylesheets="@Style.css" />
                         <Label layoutX="181.0" layoutY="17.0" stylesheets="@Style.css" text="Choose Quantity" />
-                        <ComboBox layoutX="191.0" layoutY="54.0" prefHeight="25.0" prefWidth="67.0" stylesheets="@Style.css" />
+                        <ComboBox fx:id="cmbobxChooseQuantity" editable="true" layoutX="191.0" layoutY="54.0" prefHeight="25.0" prefWidth="67.0" stylesheets="@Style.css" />
                         <Button fx:id="RecordProductionButton" layoutX="167.0" layoutY="203.0" mnemonicParsing="false" onAction="#RecordProduction" stylesheets="@Style.css" text="Record Production" />
                      </children></AnchorPane>
             </content>
