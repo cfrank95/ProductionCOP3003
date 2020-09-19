@@ -46,12 +46,12 @@ public class Controller {
     // ***** End Produce Tab  ******
 
     // Initialize drop-down boxes
-    public void initialize(){
+    public void initialize() {
 
         // Produce Tab Choose Quantity Combo Box
-        for(int i = 0; i <= 9; i++){
+        for (int i = 0; i <= 9; i++) {
             String j = String.valueOf(i + 1);
-            cmbobxChooseQuantity.getItems().add(i,j);
+            cmbobxChooseQuantity.getItems().add(i, j);
         }
         cmbobxChooseQuantity.setEditable(true);
 
@@ -102,25 +102,25 @@ public class Controller {
 
             // **** method would end here ****
 
-        }catch (SQLException se) {
+        } catch (SQLException se) {
             // Handle errors for JDBC
             se.printStackTrace();
-        }catch (Exception e) {
+        } catch (Exception e) {
             // Handle errors for Class.forName
             e.printStackTrace();
-        }finally{
+        } finally {
             // finally block used to close resources
             try {
                 if (stmt != null)
                     conn.close();
-            }catch(SQLException se) {
+            } catch (SQLException se) {
             }// do nothing
 
             try {
                 if (conn != null)
                     conn.close();
 
-            }catch(SQLException se) {
+            } catch (SQLException se) {
                 se.printStackTrace();
             }// end try
 
