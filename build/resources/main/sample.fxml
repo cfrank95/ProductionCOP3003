@@ -16,17 +16,18 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="275.0" prefWidth="300.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="466.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
 
     <children>
-      <TabPane layoutY="-5.0" prefHeight="282.0" prefWidth="300.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="-5.0" prefHeight="342.0" prefWidth="466.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Product Line">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@Style.css">
                      <children>
-                        <GridPane layoutY="6.0" prefHeight="93.0" prefWidth="300.0">
+                        <GridPane layoutY="6.0" prefHeight="93.0" prefWidth="466.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -45,12 +46,16 @@
                               <ChoiceBox fx:id="choicebxItemType" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
-                        <Button fx:id="btnAddProduct" blendMode="HARD_LIGHT" layoutX="64.0" layoutY="99.0" mnemonicParsing="false" onAction="#AddProduct" stylesheets="@Style.css" text="Add Product" AnchorPane.bottomAnchor="128.33333333333331" AnchorPane.topAnchor="99.0" />
-                        <Label layoutX="105.0" layoutY="144.0" stylesheets="@Style.css" text="Existing Products" textAlignment="CENTER" />
-                        <TableView layoutY="161.0" prefHeight="89.0" prefWidth="300.0" stylesheets="@Style.css">
+                        <Button fx:id="btnAddProduct" blendMode="HARD_LIGHT" layoutX="104.0" layoutY="99.0" mnemonicParsing="false" onAction="#AddProduct" prefHeight="27.0" prefWidth="83.0" stylesheets="@Style.css" text="Add Product" AnchorPane.bottomAnchor="186.0" AnchorPane.topAnchor="99.0" />
+                        <Label layoutX="173.0" layoutY="143.0" mouseTransparent="true" stylesheets="@Style.css" text="Existing Products" textAlignment="CENTER" underline="true">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
+                        <TableView fx:id="productLineTableView" layoutX="4.0" layoutY="177.0" prefHeight="135.0" prefWidth="459.0" stylesheets="@Style.css">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn fx:id="productColumn" prefWidth="164.66668176651" text="Product" />
+                            <TableColumn fx:id="manufacturerColumn" prefWidth="178.66664123535156" text="Manufacturer" />
+                              <TableColumn fx:id="typeColumn" prefWidth="126.0" text="Type" />
                           </columns>
                         </TableView>
                      </children>
@@ -61,11 +66,11 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@Style.css">
                      <children>
-                        <Label layoutX="27.0" layoutY="5.0" stylesheets="@Style.css" text="Choose Product" />
-                        <ListView fx:id="lstvwChooseProduct" layoutX="7.0" layoutY="26.0" prefHeight="212.0" prefWidth="129.0" stylesheets="@Style.css" />
-                        <Label layoutX="181.0" layoutY="17.0" stylesheets="@Style.css" text="Choose Quantity" />
-                        <ComboBox fx:id="cmbobxChooseQuantity" editable="true" layoutX="191.0" layoutY="54.0" prefHeight="25.0" prefWidth="67.0" stylesheets="@Style.css" />
-                        <Button fx:id="RecordProductionButton" layoutX="167.0" layoutY="203.0" mnemonicParsing="false" onAction="#RecordProduction" stylesheets="@Style.css" text="Record Production" />
+                        <Label layoutX="90.0" layoutY="5.0" stylesheets="@Style.css" text="Choose Product" />
+                        <ListView fx:id="listViewChooseProduct" layoutX="7.0" layoutY="26.0" prefHeight="280.0" prefWidth="252.0" stylesheets="@Style.css" />
+                        <Label layoutX="315.0" layoutY="17.0" stylesheets="@Style.css" text="Choose Quantity" />
+                        <ComboBox fx:id="cmbobxChooseQuantity" editable="true" layoutX="325.0" layoutY="53.0" prefHeight="25.0" prefWidth="67.0" stylesheets="@Style.css" />
+                        <Button fx:id="RecordProductionButton" layoutX="301.0" layoutY="266.0" mnemonicParsing="false" onAction="#RecordProduction" stylesheets="@Style.css" text="Record Production" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -73,7 +78,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@Style.css">
                      <children>
-                        <TextArea layoutX="26.0" layoutY="24.0" prefHeight="157.0" prefWidth="248.0" stylesheets="@Style.css" />
+                        <TextArea fx:id="prodLogTextArea" editable="false" layoutX="8.0" layoutY="6.0" prefHeight="299.0" prefWidth="449.0" stylesheets="@Style.css" />
                      </children></AnchorPane>
                </content>
             </Tab>
