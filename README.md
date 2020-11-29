@@ -33,3 +33,18 @@ Semester Java FX Project
   
   
   
+10/31/2020:
+  **Sprint 2 (Beta):**
+  
+  Added Functionality for all 3 tabs.
+* Users can now add a Product into the database using the fields in the first tab.
+* The Product's information will then be displayed at the bottom of the Product Line tab in the TableView in sequential order.
+* The Produce tab will display each Product in the database and its identifying information in the List View.
+     * The user can select from this ListView and choose the quantity in the drop-down box to record the Production and be 
+        displayed in the TextArea of the Production Log tab.
+* The Production Log displays each Product being produced in the Produce tab with a unique serial number.
+
+Resources:
+   * https://sites.google.com/site/profvanselow/course/cop-3003/
+   * http://tutorials.jenkov.com/javafx/tableview.html
+   * http://tutorials.jenkov.com/javafx/listview.html
