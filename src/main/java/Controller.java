@@ -256,7 +256,8 @@ public class Controller {
                 if (stmt != null)
                     conn.close();
             } catch (SQLException ignored) {
-            }try {
+            }
+            try {
                 if (conn != null)
                     conn.close();
 
