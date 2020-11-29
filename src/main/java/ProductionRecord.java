@@ -1,12 +1,11 @@
+import java.util.Date;
+
 /**
  * Used for displaying information created by user to display in log
  * with a unique serialNumber.
  *
  * @author Chris Frank
  */
-
-import java.util.Date;
-
 public class ProductionRecord {
 
     private int productionNumber;
@@ -18,13 +17,6 @@ public class ProductionRecord {
     private static int countVI = 0;
     private static int countAM = 0;
     private static int countVM = 0;
-
-    // Unused Constructor
-//    ProductionRecord(Product product) {
-//        productionNumber = 0;
-//        serialNumber = "0";
-//        dateProduced = new Date();
-//    }
 
     // Constructor to be called in Controller class
     ProductionRecord(Product product, int itemCount) {
@@ -54,7 +46,6 @@ public class ProductionRecord {
 
 
     // Setters
-
     public void setProductionNumber(int productionNumber) {
         this.productionNumber = productionNumber;
     }
@@ -82,9 +73,10 @@ public class ProductionRecord {
      * Uses individual Product object's information to create
      * unique serialNumber.  Uses first 3 elements from manufacturer
      * string, the Product's 2 letter ItemType code, and its count of
-     * similar item types that exist, padded with <5 leading zeros.
+     * similar item types that exist, padded with < 5 leading zeros.
      *
-     * @param product
+     * @param product object passed to generate a serial number for
+     *                that specific product
      * @return serialNumber
      */
     String serialNumFormat(Product product) {

@@ -1,10 +1,3 @@
-/**
- * Control interactions between user interface,
- * database manipulation, and processes.
- *
- * @author Chris Frank
- */
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,10 +5,36 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.Scanner;
 
+/**
+ * Control interactions between user interface,
+ * database manipulation, and processes.
+ *
+ * @author Chris Frank
+ */
 public class Controller {
 
+
+    // ***** Employee Tab *****
+    @FXML
+    private TextField txtfldName;
+
+    @FXML
+    private TextField txtfldPassword;
+
+    @FXML
+    private Button btnCreateEmployee;
+
+    @FXML
+    void CreateEmployee(ActionEvent event) {
+        createEmployee();
+    }
+
+    // ***** End Employee Tab *****
 
     // ***** Product Tab *****
     // ObservableList to hold Products for use in the TableView in Product Line tab
@@ -44,6 +63,9 @@ public class Controller {
 
     @FXML
     private Button btnAddProduct;
+
+    public Controller() throws FileNotFoundException {
+    }
 
     @FXML
     void AddProduct(ActionEvent event) {                        // Product Line Tab Button
@@ -85,14 +107,14 @@ public class Controller {
     // Initialize Interface with information from database
     public void initialize() {
 
-        // Product Line Tab Item Type Choice Box
+        // Product Line Tab
         populateProductLineChoiceBox();
         populateProdLineTableView(false);
 
-        // Produce Tab Choose Quantity Combo Box
+        // Produce Tab
         populateProduceComboBox();
 
-        // Production Log
+        // Production Log is included in populateProdLineTableView()
 
     }
 
@@ -105,7 +127,11 @@ public class Controller {
 
     // Database Credentials
     final String USER = "";
-    final String PASS = "";
+
+    File password = new File("res/passFile");
+    Scanner sc = new Scanner(password);
+    final String PASS = sc.nextLine();
+
 
     // ***** Product Tab Methods *****
 
@@ -147,18 +173,16 @@ public class Controller {
             populateProdLineTableView(true);
 
 
-        } catch (SQLException se) {
+        } catch (Exception se) {
             // Handle errors for JDBC
             se.printStackTrace();
-        } catch (Exception e) {
-            // Handle errors for Class.forName
-            e.printStackTrace();
-        } finally {
+        }// Handle errors for Class.forName
+        finally {
             // finally block used to close resources
             try {
                 if (pStmt != null)
                     conn.close();
-            } catch (SQLException se) {
+            } catch (SQLException ignored) {
             }// do nothing
 
             try {
@@ -178,7 +202,9 @@ public class Controller {
      * Take either one or every row of data from Product table
      * in database and fill TableView will corresponding data.
      *
-     * @param isForUpdate
+     * @param isForUpdate used in conditional statement to
+     *                    either update table or create a
+     *                    new one for user to view
      */
     public void populateProdLineTableView(boolean isForUpdate) {
         Connection conn = null;
@@ -220,18 +246,80 @@ public class Controller {
 
             System.out.println("Records Populated from table...");
 
-        } catch (SQLException se) {
+        } catch (Exception se) {
             // Handle errors for JDBC
             se.printStackTrace();
-        } catch (Exception e) {
-            // Handle errors for Class.forName
-            e.printStackTrace();
-        } finally {
+        }// Handle errors for Class.forName
+        finally {
             // finally block used to close resources
             try {
                 if (stmt != null)
                     conn.close();
+            } catch (SQLException ignored) {
+            }try {
+                if (conn != null)
+                    conn.close();
+
             } catch (SQLException se) {
+                se.printStackTrace();
+            }// end try
+
+        }// end finally try
+    }
+
+    /**
+     * create entry in database for employee information
+     * entered into the text fields
+     */
+    public void createEmployee() {
+        Connection conn = null;
+        Statement stmt = null;
+
+        try {
+            // Step 1: Register JDBC Driver
+            Class.forName(JDBC_DRIVER);
+
+            // Step 2: Open a Connection
+            System.out.println("Connecting to ProDDB...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            System.out.println("Connected to database successfully...");
+
+            // Step 3: Execute a Query
+            System.out.println("Populating data from the table...");
+
+            stmt = conn.createStatement();
+            String sql;
+
+            Employee employee = new Employee(txtfldName.getText(), txtfldPassword.getText());
+
+            String NAME = employee.name;
+            String EMAIL = employee.email;
+            String USERNAME = employee.username;
+            String PASSWORD = reverseString(employee.password);
+
+            sql = "INSERT INTO EMPLOYEE(NAME, EMAIL, USERNAME, PASSWORD) VALUES ( ?,  ?, ?, ?)";
+
+            PreparedStatement pStatement = conn.prepareStatement(sql);
+
+            pStatement.setString(1, NAME);
+            pStatement.setString(2, EMAIL);
+            pStatement.setString(3, USERNAME);
+            pStatement.setString(4, PASSWORD);
+
+            pStatement.executeUpdate();
+
+            System.out.println("Employee added to Employee table...");
+
+        } catch (Exception se) {
+            // Handle errors for JDBC
+            se.printStackTrace();
+        }// Handle errors for Class.forName
+        finally {
+            // finally block used to close resources
+            try {
+                if (stmt != null)
+                    conn.close();
+            } catch (SQLException ignored) {
             }// do nothing
 
             try {
@@ -244,7 +332,6 @@ public class Controller {
 
         }// end finally try
     }
-
 
     /**
      * Populate ChoiceBox in the Product Line tab with
@@ -268,6 +355,14 @@ public class Controller {
         }
         cmbobxChooseQuantity.getSelectionModel().selectFirst();
         cmbobxChooseQuantity.setEditable(true);
+    }
+
+    public String reverseString(String pass) {
+        if (pass.isEmpty()) {
+            return pass;
+        }
+
+        return reverseString(pass.substring(1)) + pass.charAt(0);
     }
 
 } // end controller
