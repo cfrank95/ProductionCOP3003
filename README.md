@@ -48,3 +48,10 @@ Resources:
    * https://sites.google.com/site/profvanselow/course/cop-3003/
    * http://tutorials.jenkov.com/javafx/tableview.html
    * http://tutorials.jenkov.com/javafx/listview.html
+   
+10/31/2020:
+  **Sprint 3 (Release):**
+  
+  Added Employee tab
+* Employees now have a place to create an account that is stored in the database.  An email and username is supplied, and if their password meets minimum requirements is set as well.  If their password doesn't meet minimum requirements, they are supplied a default password.
+* A password is set to the database.
