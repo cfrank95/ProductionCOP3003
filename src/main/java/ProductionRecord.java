@@ -9,7 +9,7 @@ import java.util.Date;
 public class ProductionRecord {
 
     private int productionNumber;
-    private String productID;
+    private int productID;
     private String serialNumber;
     private Date dateProduced;
 
@@ -20,7 +20,7 @@ public class ProductionRecord {
 
     // Constructor to be called in Controller class
     ProductionRecord(Product product, int itemCount) {
-        productID = product.name;
+        productID = product.id;
         productionNumber = itemCount;
         serialNumber = serialNumFormat(product);
         dateProduced = new Date();
@@ -32,7 +32,7 @@ public class ProductionRecord {
         return productionNumber;
     }
 
-    public String getProductID() {
+    public int getProductID() {
         return productID;
     }
 
@@ -50,7 +50,7 @@ public class ProductionRecord {
         this.productionNumber = productionNumber;
     }
 
-    public void setProductID(String productID) {
+    public void setProductID(int productID) {
         this.productID = productID;
     }
 

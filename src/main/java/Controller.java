@@ -1,6 +1,5 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,11 +25,9 @@ public class Controller {
     @FXML
     private TextField txtfldPassword;
 
-    @FXML
-    private Button btnCreateEmployee;
 
     @FXML
-    void CreateEmployee(ActionEvent event) {
+    void CreateEmployee() {
         createEmployee();
     }
 
@@ -61,14 +58,11 @@ public class Controller {
     @FXML
     private ChoiceBox<ItemType> choicebxItemType;
 
-    @FXML
-    private Button btnAddProduct;
-
     public Controller() throws FileNotFoundException {
     }
 
     @FXML
-    void AddProduct(ActionEvent event) {                        // Product Line Tab Button
+    void AddProduct() {                        // Product Line Tab Button
         addProduct();
     }
     // ***** End Product Tab *****
@@ -84,10 +78,7 @@ public class Controller {
     private ComboBox<String> cmbobxChooseQuantity;
 
     @FXML
-    private Button RecordProductionButton;
-
-    @FXML
-    void RecordProduction(ActionEvent event) {                  // Produce Tab Button
+    void RecordProduction() {                  // Produce Tab Button
         // Create a ProductionRecord object: logEntry and pass into it the Product selected by user
         // iterating however many times the user selects from the ComboBox
         for (int i = 0; i < Integer.parseInt(cmbobxChooseQuantity.getValue()); i++) {
