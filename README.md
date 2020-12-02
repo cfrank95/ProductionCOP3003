@@ -56,3 +56,6 @@ Resources:
 * Employees now have a place to create an account that is stored in the database.  An email and username is supplied, and if their password meets minimum requirements is set as well.  If their password doesn't meet minimum requirements, they are supplied a default password.
 * A password is set to the database.
 
+Class Diagram:
+
+![ProductionProjectCD](https://user-images.githubusercontent.com/43448658/100932057-508dda80-34b9-11eb-989c-89337561c7b1.png)
