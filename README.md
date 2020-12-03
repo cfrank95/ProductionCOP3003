@@ -58,6 +58,10 @@ Resources:
 * Product Records now stored in PRODUCTRECORD database table.
 * Error exception handling and user aids added to prevent empty fields from crashing program or providing errors.
 
-Class Diagram:
+*Class Diagram:*
 
 ![ProductionProjectCD](https://user-images.githubusercontent.com/43448658/100932057-508dda80-34b9-11eb-989c-89337561c7b1.png)
+
+*Database Diagram:*
+
+![ProdDB](https://user-images.githubusercontent.com/43448658/100958749-e857ec80-34ea-11eb-99e8-951900b2b33e.png)
