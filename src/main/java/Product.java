@@ -10,7 +10,8 @@ public abstract class Product implements Item {
     String manufacturer;
     String name;
 
-    Product(String name, String manufacturer, ItemType type) {
+    Product(int id, String name, String manufacturer, ItemType type) {
+        this.id = id;
         this.name = name;
         this.manufacturer = manufacturer;
         this.type = type;
@@ -18,6 +19,8 @@ public abstract class Product implements Item {
     }
 
     public Product(String name, String manufacturer) {
+        this.name = name;
+        this.manufacturer = manufacturer;
     }
 
     public ItemType getType() {
@@ -49,10 +52,9 @@ public abstract class Product implements Item {
     }
 
     public String toString() {
-        String string = "Name : " + name + "\nManufacturer: "
-                + manufacturer + "\nType: " + type.code;
 
-        return string;
+        return "Name : " + name + "\nManufacturer: "
+                + manufacturer + "\nType: " + type.code;
     }
 }
 
@@ -63,8 +65,8 @@ public abstract class Product implements Item {
  */
 class Widget extends Product {
 
-    Widget(String name, String manufacturer, ItemType type) {
+    Widget(int id, String name, String manufacturer, ItemType type) {
 
-        super(name, manufacturer, type);
+        super(id, name, manufacturer, type);
     }
 }

@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Used for displaying information created by user to display in log
@@ -11,19 +11,28 @@ public class ProductionRecord {
     private int productionNumber;
     private int productID;
     private String serialNumber;
-    private Date dateProduced;
+    private java.sql.Date dateProduced;
 
     private static int countAU = 0;
     private static int countVI = 0;
     private static int countAM = 0;
     private static int countVM = 0;
 
+    // Default constructor called to update / store production record
+    ProductionRecord(int productionNumber, int productID, String serialNumber, Date dateProduced) {
+        this.productionNumber = productionNumber;
+        this.productID = productID;
+        this.serialNumber = serialNumber;
+        this.dateProduced = dateProduced;
+    }
+
     // Constructor to be called in Controller class
     ProductionRecord(Product product, int itemCount) {
         productID = product.id;
-        productionNumber = itemCount;
+        this.productionNumber = itemCount;
         serialNumber = serialNumFormat(product);
-        dateProduced = new Date();
+        java.util.Date utilDate = new java.util.Date();
+        dateProduced = new java.sql.Date(utilDate.getTime());
     }
 
 

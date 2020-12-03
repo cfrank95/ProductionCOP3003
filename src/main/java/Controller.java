@@ -1,8 +1,10 @@
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,6 +20,8 @@ import java.util.Scanner;
 public class Controller {
 
 
+    public Button RecordProductionButton;
+
     // ***** Employee Tab *****
     @FXML
     private TextField txtfldName;
@@ -25,6 +29,8 @@ public class Controller {
     @FXML
     private TextField txtfldPassword;
 
+    @FXML
+    private Label lblEmployeeError;
 
     @FXML
     void CreateEmployee() {
@@ -58,6 +64,11 @@ public class Controller {
     @FXML
     private ChoiceBox<ItemType> choicebxItemType;
 
+    @FXML
+    private Label lblProdLineError;
+
+    public Button btnAddProduct;
+
     public Controller() throws FileNotFoundException {
     }
 
@@ -72,20 +83,19 @@ public class Controller {
     ObservableList<String> produceObservableList = FXCollections.observableArrayList();
 
     @FXML
+    private Label lblRecordProductionError;
+
+    @FXML
     private ListView<Product> listViewChooseProduct;
 
     @FXML
     private ComboBox<String> cmbobxChooseQuantity;
 
+    public Button btnCreateEmployee;
+
     @FXML
     void RecordProduction() {                  // Produce Tab Button
-        // Create a ProductionRecord object: logEntry and pass into it the Product selected by user
-        // iterating however many times the user selects from the ComboBox
-        for (int i = 0; i < Integer.parseInt(cmbobxChooseQuantity.getValue()); i++) {
-            ProductionRecord logEntry = new ProductionRecord(listViewChooseProduct.getSelectionModel().getSelectedItem(), totalCount++);
-            prodLogTextArea.appendText(logEntry.toString() + "\n");
-        }
-
+        recordProduction(true);
     }
     // ***** End Produce Tab  *****
 
@@ -105,7 +115,9 @@ public class Controller {
         // Produce Tab
         populateProduceComboBox();
 
-        // Production Log is included in populateProdLineTableView()
+        // Production Log
+        recordProduction(false);
+
 
     }
 
@@ -143,25 +155,65 @@ public class Controller {
             System.out.println("Connected to database successfully...");
 
             // Step 3: Execute a Query
-            System.out.println("Inserting records into the table...");
-
-            // Variables to hold values user inputs
-            String product = txtProductName.getText();
-            String manufacturer = txtManufacturer.getText();
-            ItemType itemType = choicebxItemType.getValue();
-
             String sql = "INSERT INTO PRODUCT (NAME, MANUFACTURER, TYPE) VALUES(?, ?, ?)";
 
             pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1, product);
-            pStmt.setString(2, manufacturer);
-            pStmt.setString(3, itemType.toString());
 
-            pStmt.executeUpdate();        // executeUpdate() executes a string to be as SQL code
-            System.out.println("Inserted records into the table...");
+            // Variables to hold values user inputs
+            String product;
+            if (txtProductName.getText().equals("")) {
+                lblProdLineError.setText("Enter Product Name");
+                PauseTransition visiblePause = new PauseTransition(
+                        Duration.seconds(3)
+                );
+                visiblePause.setOnFinished(
+                        event -> lblProdLineError.setText("")
+                );
+                visiblePause.play();
+            } else {
+                product = txtProductName.getText();
+                pStmt.setString(1, product);
+            }
 
-            productLineTableView.setAccessibleText("");
-            populateProdLineTableView(true);
+            String manufacturer;
+            if (txtManufacturer.getText().equals("")) {
+                lblProdLineError.setText("Enter manufacturer");
+                PauseTransition visiblePause = new PauseTransition(
+                        Duration.seconds(3)
+                );
+                visiblePause.setOnFinished(
+                        event -> lblProdLineError.setText("")
+                );
+                visiblePause.play();
+            } else {
+                manufacturer = txtManufacturer.getText();
+                pStmt.setString(2, manufacturer);
+            }
+
+            ItemType itemType;
+            if (choicebxItemType.getSelectionModel().isEmpty()) {
+                lblProdLineError.setText("Select Item Type");
+                PauseTransition visiblePause = new PauseTransition(
+                        Duration.seconds(3)
+                );
+                visiblePause.setOnFinished(
+                        event -> lblProdLineError.setText("")
+                );
+                visiblePause.play();
+            } else {
+                itemType = choicebxItemType.getValue();
+                pStmt.setString(3, itemType.toString());
+            }
+
+            if (!choicebxItemType.getSelectionModel().isEmpty() &&
+                    !txtProductName.getText().equals("") &&
+                    !txtManufacturer.getText().equals("")) {
+                pStmt.executeUpdate();        // executeUpdate() executes a string to be as SQL code
+                System.out.println("Inserted records into the table...");
+
+                productLineTableView.setAccessibleText("");
+                populateProdLineTableView(true);
+            }
 
 
         } catch (Exception se) {
@@ -191,7 +243,7 @@ public class Controller {
 
     /**
      * Take either one or every row of data from Product table
-     * in database and fill TableView will corresponding data.
+     * in database and fill TableView with corresponding data.
      *
      * @param isForUpdate used in conditional statement to
      *                    either update table or create a
@@ -211,7 +263,7 @@ public class Controller {
             System.out.println("Connected to database successfully...");
 
             // Step 3: Execute a Query
-            System.out.println("Populating data from the table...");
+            System.out.println("Populating data from the PRODUCT table...");
 
             stmt = conn.createStatement();
             String sql;
@@ -230,9 +282,9 @@ public class Controller {
             productLineTableView.setItems(productLine);
 
             while (rs.next()) {
-                productLine.add(new Widget(rs.getString("name"), rs.getString("manufacturer"), ItemType.valueOf(rs.getString("type"))));
-                produceObservableList.add(new Widget(rs.getString("name"), rs.getString("manufacturer"), ItemType.valueOf(rs.getString("type"))).toString());
-                listViewChooseProduct.getItems().add(new Widget(rs.getString("name"), rs.getString("manufacturer"), ItemType.valueOf(rs.getString("type"))));
+                productLine.add(new Widget(rs.getInt("id"), rs.getString("name"), rs.getString("manufacturer"), ItemType.valueOf(rs.getString("type"))));
+                produceObservableList.add(new Widget(rs.getInt("id"), rs.getString("name"), rs.getString("manufacturer"), ItemType.valueOf(rs.getString("type"))).toString());
+                listViewChooseProduct.getItems().add(new Widget(rs.getInt("id"), rs.getString("name"), rs.getString("manufacturer"), ItemType.valueOf(rs.getString("type"))));
             }
 
             System.out.println("Records Populated from table...");
@@ -277,30 +329,57 @@ public class Controller {
             System.out.println("Connected to database successfully...");
 
             // Step 3: Execute a Query
-            System.out.println("Populating data from the table...");
+            System.out.println("Populating data from the EMPLOYEE table...");
 
             stmt = conn.createStatement();
             String sql;
 
-            Employee employee = new Employee(txtfldName.getText(), txtfldPassword.getText());
+            try {
+                Employee employee = new Employee(txtfldName.getText(), txtfldPassword.getText());
 
-            String NAME = employee.name;
-            String EMAIL = employee.email;
-            String USERNAME = employee.username;
-            String PASSWORD = reverseString(employee.password);
+                sql = "INSERT INTO EMPLOYEE(NAME, EMAIL, USERNAME, PASSWORD) VALUES (?,  ?, ?, ?)";
 
-            sql = "INSERT INTO EMPLOYEE(NAME, EMAIL, USERNAME, PASSWORD) VALUES ( ?,  ?, ?, ?)";
+                PreparedStatement pStatement = conn.prepareStatement(sql);
 
-            PreparedStatement pStatement = conn.prepareStatement(sql);
+                String NAME = "";
+                if (employee.name.equals("")) {
+                    lblEmployeeError.setText("Enter First & Last Name");
+                    PauseTransition visiblePause = new PauseTransition(
+                            Duration.seconds(3)
+                    );
+                    visiblePause.setOnFinished(
+                            event -> lblEmployeeError.setText("")
+                    );
+                    visiblePause.play();
+                } else {
+                    NAME = employee.name;
+                    pStatement.setString(1, NAME);
+                }
 
-            pStatement.setString(1, NAME);
-            pStatement.setString(2, EMAIL);
-            pStatement.setString(3, USERNAME);
-            pStatement.setString(4, PASSWORD);
+                String EMAIL = employee.email;
+                String USERNAME = employee.username;
 
-            pStatement.executeUpdate();
+                if (!NAME.equals("")) {
+                    pStatement.setString(2, EMAIL);
+                    pStatement.setString(3, USERNAME);
 
-            System.out.println("Employee added to Employee table...");
+                    pStatement.executeUpdate();
+                    System.out.println("Employee added to EMPLOYEE table...");
+                }
+
+                String PASSWORD = reverseString(employee.password);
+                pStatement.setString(4, PASSWORD);
+
+            } catch (NullPointerException e) {
+                lblRecordProductionError.setText("Choose Quantity to Produce.");
+                PauseTransition visiblePause = new PauseTransition(
+                        Duration.seconds(3)
+                );
+                visiblePause.setOnFinished(
+                        event -> lblRecordProductionError.setText("")
+                );
+                visiblePause.play();
+            }
 
         } catch (Exception se) {
             // Handle errors for JDBC
@@ -355,6 +434,100 @@ public class Controller {
         }
 
         return reverseString(pass.substring(1)) + pass.charAt(0);
+    }
+
+    /**
+     * Take either one or every row of data from Product table
+     * in database and fill Production Table with corresponding data.
+     *
+     * @param isUpdate    used in conditional statement to
+     *                    either update table or create a
+     *                    new one for user to view
+     */
+    public void recordProduction(boolean isUpdate) {
+        Connection conn = null;
+        Statement stmt = null;
+
+        try {
+            // Step 1: Register JDBC Driver
+            Class.forName(JDBC_DRIVER);
+
+            // Step 2: Open a Connection
+            System.out.println("Connecting to ProDDB...");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            System.out.println("Connected to database successfully...");
+
+            // Step 3: Execute a Query
+            System.out.println("Populating data from the PRODUCTIONRECORD table...");
+
+            stmt = conn.createStatement();
+            String sql;
+
+            if (isUpdate) {
+                // Create a ProductionRecord object: logEntry and pass into it the Product selected by user
+                // iterating however many times the user selects from the ComboBox
+                try {
+                    for (int i = 0; i < Integer.parseInt(cmbobxChooseQuantity.getValue()); i++) {
+                        sql = "INSERT INTO PRODUCTIONRECORD(PRODUCT_ID, SERIAL_NUM, DATE_PRODUCED)" +
+                                "VALUES(?, ?, CURRENT_TIMESTAMP)";
+                        ProductionRecord prodRecord = new ProductionRecord(listViewChooseProduct.getSelectionModel().getSelectedItem(), totalCount++);
+
+                        PreparedStatement pStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+                        pStatement.setInt(1, prodRecord.getProductID());
+                        pStatement.setString(2, prodRecord.getSerialNumber());
+
+                        pStatement.executeUpdate();
+
+                        System.out.println("Production Record added to Production Record table...");
+                        prodLogTextArea.appendText(prodRecord.toString() + "\n");
+                    }
+                } catch (NullPointerException e) {
+                    lblRecordProductionError.setText("Choose Quantity to Produce.");
+                    PauseTransition visiblePause = new PauseTransition(
+                            Duration.seconds(3)
+                    );
+                    visiblePause.setOnFinished(
+                            event -> lblRecordProductionError.setText("")
+                    );
+                    visiblePause.play();
+                }
+            } else if (!isUpdate) {
+                sql = "SELECT * FROM PRODUCTIONRECORD";
+                ResultSet rs = stmt.executeQuery(sql);
+
+                while (rs.next()) {
+                    totalCount++;
+                    prodLogTextArea.appendText("Prod. Num: " + rs.getString(1) +
+                            " Product ID: " + rs.getString(2) +
+                            " Serial Num: " + rs.getString(3) +
+                            " Date: " + rs.getString(4) + "\n");
+                }
+
+                System.out.println("Records Populated from table...");
+            }
+
+        } catch (Exception se) {
+            // Handle errors for JDBC
+            se.printStackTrace();
+        }// Handle errors for Class.forName
+        finally {
+            // finally block used to close resources
+            try {
+                if (stmt != null)
+                    conn.close();
+            } catch (SQLException ignored) {
+            }// do nothing
+
+            try {
+                if (conn != null)
+                    conn.close();
+
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }// end try
+
+        }// end finally try
     }
 
 } // end controller
